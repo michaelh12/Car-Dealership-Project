@@ -79,15 +79,7 @@ class App extends Component {
                     return (
                       car.Make
                     )
-                  }))].map((Make) => {
-
-                    return (
-                      <option key={Make} value={Make}> {Make} </option>
-                    )
-
-                  })
-
-                }
+                  }))].map((Make) => <option key={Make} value={Make}> {Make} </option>)}
               </select>
             </label>
 
@@ -99,25 +91,9 @@ class App extends Component {
                 <option value="" >Choose here</option>
 
 
-                {[...new Set(this.state.carDatabase.filter(car => {
-
-                  return (
-                    this.state.value.Make === car.Make
-                  )
-
-
-                }).map(car => {
+                {[...new Set(this.state.carDatabase.filter(car => this.state.value.Make === car.Make).map(car => {
                   return car.Model
-                }))].map(Model => {
-                  return (
-
-                    <option key={Model} value={Model}>{Model}</option>
-
-                  )
-
-                }
-
-                )}
+                }))].map(Model => <option key={Model} value={Model}>{Model}</option>)}
 
               </select>
             </label>
@@ -131,19 +107,7 @@ class App extends Component {
 
                 {this.state.carDatabase.filter((car) => {
                   return this.state.value.Model === car.Model
-                }).map(car => {
-
-
-
-                  return (
-
-
-                    <option key={car.Id} value={car.Year}>{car.Year}</option>
-
-                  )
-
-
-                })}
+                }).map(car => <option key={car.Id} value={car.Year}>{car.Year}</option>)}
 
               </select>
             </label>
@@ -158,7 +122,7 @@ class App extends Component {
 
           <h1>{this.state.value.Year ? `your price is:  ${searchedCar ? searchedCar.Price : ''}` : ''}</h1>
 
-          {this.state.value.Year ? searchedCar ? <img src={searchedCar.imgUrl} /> : '' : ''}
+          {this.state.value.Year ? searchedCar ? <img src={searchedCar.imgUrl} alt={searchedCar.Model} /> : '' : ''}
 
 
         </div>
