@@ -39,12 +39,15 @@ class App extends Component {
   handleChange = (e) => {
 
     e.target.name === 'Make' ? this.setState({
-      value: { Make: e.target.value, Model: '', Year: 0 }
+      value: { [e.target.name]: e.target.value }
+
+    }) : e.target.name === 'Model' ? this.setState({
+      value: { Make: this.state.value.Make, [e.target.name]: e.target.value }
 
     }) :
-      this.setState({
-        value: { ...this.state.value, [e.target.name]: e.target.value }
-      })
+        this.setState({
+          value: { ...this.state.value, [e.target.name]: e.target.value }
+        })
   }
 
 
