@@ -75,11 +75,8 @@ class App extends Component {
                 {
 
 
-                  [...new Set(this.state.carDatabase.map(car => {
-                    return (
-                      car.Make
-                    )
-                  }))].map((Make) => <option key={Make} value={Make}> {Make} </option>)}
+                  [...new Set(this.state.carDatabase.map(car => car.Make))]
+                    .map((Make) => <option key={Make} value={Make}> {Make} </option>)}
               </select>
             </label>
 
@@ -91,9 +88,8 @@ class App extends Component {
                 <option value="" >Choose here</option>
 
 
-                {[...new Set(this.state.carDatabase.filter(car => this.state.value.Make === car.Make).map(car => {
-                  return car.Model
-                }))].map(Model => <option key={Model} value={Model}>{Model}</option>)}
+                {[...new Set(this.state.carDatabase.filter(car => this.state.value.Make === car.Make).map(car => car.Model))]
+                  .map(Model => <option key={Model} value={Model}>{Model}</option>)}
 
               </select>
             </label>
@@ -105,9 +101,8 @@ class App extends Component {
                   <select value={this.state.value.Year} name="Year" onChange={this.handleChange}>
                 <option value="" >Choose here</option>
 
-                {this.state.carDatabase.filter((car) => {
-                  return this.state.value.Model === car.Model
-                }).map(car => <option key={car.Id} value={car.Year}>{car.Year}</option>)}
+                {this.state.carDatabase.filter((car) => this.state.value.Model === car.Model)
+                  .map(car => <option key={car.Id} value={car.Year}>{car.Year}</option>)}
 
               </select>
             </label>
@@ -122,8 +117,8 @@ class App extends Component {
 
           <h1>{this.state.value.Year ? `your price is:  ${searchedCar ? searchedCar.Price : ''}` : ''}</h1>
 
+          {/* image for car */}
           {this.state.value.Year ? searchedCar ? <img src={searchedCar.imgUrl} alt={searchedCar.Model} /> : '' : ''}
-
 
         </div>
       </>
