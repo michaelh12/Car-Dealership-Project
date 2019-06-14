@@ -32,8 +32,7 @@ class App extends Component {
         Model: '',
         Year: 0
 
-      },
-      priceComponent: null
+      }
     }
   }
 
@@ -56,7 +55,6 @@ class App extends Component {
 
     let searchedCar = this.state.carDatabase.filter(car => (this.state.value.Make === car.Make && this.state.value.Model === car.Model && parseInt(this.state.value.Year) === car.Year))[0];
 
-
     return (
       <>
         <div id="main-header"><h1>Welcome To My Dealership</h1></div>
@@ -77,7 +75,6 @@ class App extends Component {
                 {
 
 
-
                   [...new Set(this.state.carDatabase.map(car => {
                     return (
                       car.Make
@@ -89,8 +86,6 @@ class App extends Component {
                     )
 
                   })
-
-
 
                 }
               </select>
